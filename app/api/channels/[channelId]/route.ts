@@ -3,10 +3,11 @@ import { db } from "@/lib/db";
 import { MemberRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { channelId: string } }
-) {
+interface RouteParams {
+  params: Promise<{ channelId: string }>;
+}
+
+export async function DELETE(req: Request, { params }: RouteParams) {
   try {
     const profile = await currentPorfile();
     const { searchParams } = new URL(req.url);
@@ -56,10 +57,7 @@ export async function DELETE(
   }
 }
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { channelId: string } }
-) {
+export async function PATCH(req: Request, { params }: RouteParams) {
   try {
     const profile = await currentPorfile();
     const { searchParams } = new URL(req.url);

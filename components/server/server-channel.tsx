@@ -27,7 +27,7 @@ export const ServerChannel = ({
   const params = useParams();
   const router = useRouter();
 
-  const { serverId } = params;
+  const serverId = params;
   const Icon = iconMap[channel.type];
 
   const onClick = () => {
