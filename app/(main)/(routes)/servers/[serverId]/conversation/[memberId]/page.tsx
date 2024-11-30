@@ -9,18 +9,19 @@ import { ChatMessages } from "@/components/chat/chat-messages";
 import { MediaRoom } from "@/components/media-room";
 
 interface MemberIdPageProps {
-  params: {
+  params: Promise<{
     memberId: string;
     serverId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     video?: boolean;
-  };
+  }>;
 }
 
 const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
   const profile = await currentPorfile();
   const { serverId, memberId } = await params;
+  const { video } = await searchParams;
 
   if (!profile) {
     return <RedirectToSignIn />;
@@ -62,10 +63,10 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
         serverId={serverId}
         type="conversation"
       />
-      {searchParams.video && (
+      {video && (
         <MediaRoom chatId={conversation.id} video={true} audio={true} />
       )}
-      {!searchParams.video && (
+      {!video && (
         <>
           <ChatMessages
             member={currentMember}
