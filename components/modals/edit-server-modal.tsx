@@ -29,7 +29,6 @@ import { FileUpload } from "../file-upload";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useEffect } from "react";
-// import { useEffect, useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -106,6 +105,7 @@ export const EditServerModal = () => {
                         <FileUpload
                           endpoint="serverImage"
                           value={field.value}
+                          type="image"
                           onChange={field.onChange}
                         />
                       </FormControl>

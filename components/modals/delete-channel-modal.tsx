@@ -14,7 +14,7 @@ import { Button } from "../ui/button";
 
 import { useState } from "react";
 import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import qs from "query-string";
 // import { useEffect, useState } from "react";
 

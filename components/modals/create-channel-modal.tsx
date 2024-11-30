@@ -55,7 +55,7 @@ export const CreateChannelModal = () => {
   const router = useRouter();
   const params = useParams();
 
-  const { serverId } = params;
+  const { serverId } = params as { serverId: string };
   const isModalOpen = isOpen && type === "createChannel";
   const { channelType } = data;
   // console.log(channelType);

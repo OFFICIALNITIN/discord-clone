@@ -64,7 +64,6 @@ export const ChatItem = ({
   });
   const [filetype, setFileType] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
   const params = useParams();
   const router = useRouter();
   const { onOpen } = useModal();
@@ -78,8 +77,8 @@ export const ChatItem = ({
   };
 
   useEffect(() => {
-    const handleKeyDown = (event: any) => {
-      if (event.key === "Escape" || event.KeyCode === 27) {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" || event.keyCode === 27) {
         setIsEditing(false);
       }
     };
@@ -90,13 +89,12 @@ export const ChatItem = ({
   }, []);
 
   useEffect(() => {
-    if (fileUrl) {
-      async function fetchFileType() {
-        const type = await getFileType(fileUrl);
-        setFileType(type);
-      }
-      fetchFileType();
+    if (!fileUrl) return;
+    async function fetchFileType() {
+      const type = await getFileType(fileUrl as string);
+      setFileType(type);
     }
+    fetchFileType();
   }, [fileUrl]);
 
   const isLoading = form.formState.isSubmitting;

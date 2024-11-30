@@ -25,7 +25,7 @@ import {
 
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { ChannelType } from "@prisma/client";
 import {
