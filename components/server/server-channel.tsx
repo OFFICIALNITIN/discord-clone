@@ -24,10 +24,10 @@ export const ServerChannel = ({
   server,
   role,
 }: ServerChannelProps) => {
-  const params = useParams();
+  const params = useParams() as { serverId: string; channelId: string };
   const router = useRouter();
 
-  const serverId = params;
+  const { serverId } = params;
   const Icon = iconMap[channel.type];
 
   const onClick = () => {
